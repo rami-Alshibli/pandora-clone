@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+// 1. استيراد اللينك من مكتبة الراوتر
+import { Link } from 'react-router-dom';
 
 const VideoBanner: React.FC = () => {
     // مرجع للتحكم بعنصر الفيديو برمجياً
@@ -35,7 +37,7 @@ const VideoBanner: React.FC = () => {
             {/* 1. فيديو الخلفية */}
             <video
                 ref={videoRef}
-                src="/promo.mp4" // عدلنا المسار لهون
+                src="/promo.mp4"
                 autoPlay
                 loop
                 muted={isMuted}
@@ -54,12 +56,17 @@ const VideoBanner: React.FC = () => {
                 <h2 className="text-white text-4xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
                     PERFECT FOR<br />PROMISES
                 </h2>
-                <button className="bg-[#211710] text-white text-xs font-bold px-8 py-4 uppercase tracking-widest hover:bg-gray-800 transition-colors duration-300">
+
+                {/* 2. تحويل زر الشراء إلى Link وتوجيهه لصفحة المنتجات */}
+                <Link
+                    to="/products"
+                    className="inline-block bg-[#211710] text-white text-xs font-bold px-8 py-4 uppercase tracking-widest hover:bg-gray-800 transition-colors duration-300"
+                >
                     Shop Engravable Gifts
-                </button>
+                </Link>
             </div>
 
-            {/* 4. أزرار التحكم بالفيديو (أسفل اليمين كما في صورتك) */}
+            {/* 4. أزرار التحكم بالفيديو */}
             <div className="absolute bottom-6 right-6 flex z-10">
                 <button
                     onClick={togglePlay}

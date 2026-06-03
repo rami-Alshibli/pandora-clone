@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// 1. استيراد مكون اللينك من مكتبة الراوتر
+import { Link } from 'react-router-dom';
 
 const PromoBanner: React.FC = () => {
     // مصفوفة صور العرض الترويجي
@@ -53,12 +55,13 @@ const PromoBanner: React.FC = () => {
                     Free limited-edition reversible tote with purchase of four (4) select items from the Disney Moana x Pandora Collections. Terms and Conditions apply.
                 </p>
 
-                <a
-                    href="#"
+                {/* 2. تحويل وسم الـ a إلى Link وتوجيهه لصفحة المنتجات */}
+                <Link
+                    to="/products"
                     className="text-sm font-bold text-text-primary border-b-[1.5px] border-text-primary pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors duration-200"
                 >
                     Shop Now
-                </a>
+                </Link>
             </div>
 
         </section>

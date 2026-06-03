@@ -1,28 +1,32 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import PromoBanner from './components/PromoBanner';
-import VideoBanner from './components/VideoBanner';
-import CategoryShowcase from './components/CategoryShowcase.tsx';
-import WaveCharmsVideo from './components/WaveCharmsVideo';
-import StoreFeatures from "./components/StoreFeatures.tsx";
-import Footer from "./components/Footer.tsx";
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+import CartDrawer from './components/CartDrawer';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+import Home from './pages/Home';
+// استيراد صفحة المنتجات
+import Products from './pages/Products';
 
 function App() {
     return (
-        <div className="min-h-screen font-sans">
-            <Navbar />
-            <Hero />
-            <PromoBanner /> {/* ضفنا البانر الترويجي هون */}
-            <VideoBanner />
+        <CartProvider>
+            <Router basename={import.meta.env.BASE_URL}>
+                <div className="min-h-screen font-sans bg-white">
+                    <Navbar />
+                    <CartDrawer />
 
-            <CategoryShowcase />
-            <WaveCharmsVideo />
-            <CategoryShowcase />
-            <StoreFeatures />
-            <Footer />
-        </div>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        {/* إضافة مسار صفحة المنتجات هنا */}
+                        <Route path="/products" element={<Products />} />
+                    </Routes>
+
+                    <Footer />
+                </div>
+            </Router>
+        </CartProvider>
     );
 }
 

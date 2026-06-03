@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+// 1. استيراد مكون اللينك من مكتبة الراوتر
+import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
-    // مصفوفة بتحتوي على روابط الصور (تقدر تبدلها بصور باندورا لاحقاً)
+    // مصفوفة بتحتوي على روابط الصور
     const slides = [
         "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=2070&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=2070&auto=format&fit=crop",
@@ -14,11 +16,11 @@ const Hero: React.FC = () => {
     // تشغيل مؤقت يقلب الصورة كل 5 ثواني
     useEffect(() => {
         const timer = setInterval(() => {
-            // ننتقل للصورة التالية، ولما نوصل للآخر نرجع للصفر
+            // ننتخل للصفحة التالية، ولما نوصل للآخر نرجع للصفر
             setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
         }, 5000); // 5000 ميلي ثانية = 5 ثواني
 
-        // تنظيف المؤقت لما يتسكر المكون (أفضل ممارسة لتجنب الـ Memory Leaks)
+        // تنظيف المؤقت لما يتسكر المكون
         return () => clearInterval(timer);
     }, [slides.length]);
 
@@ -47,9 +49,14 @@ const Hero: React.FC = () => {
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8">
                     MAKE WAVES WITH<br />PANDORA<br />MOMENTS
                 </h1>
-                <button className="bg-text-tertiary text-white px-8 py-3 text-sm font-bold tracking-widest hover:bg-gray-600 transition-colors duration-300">
+
+                {/* 2. تحويل الزر إلى Link وتوجيهه لصفحة المنتجات */}
+                <Link
+                    to="/products"
+                    className="inline-block text-center bg-text-tertiary text-white px-8 py-3 text-sm font-bold tracking-widest hover:bg-gray-600 transition-colors duration-300"
+                >
                     SHOP NEW ARRIVALS
-                </button>
+                </Link>
             </div>
 
             {/* نقاط سفلية (Indicators) لتبين للمستخدم كم صورة فيه وأي صورة عم تنعرض */}
